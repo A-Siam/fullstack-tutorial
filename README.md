@@ -1,4 +1,6 @@
-# Apollo tutorial
+# My Frok of "Apollo tutorial"
+
+**NOTE:** This fork uses `typescript` and `yarn` and configure `nodemon` for that purpose
 
 This is the fullstack app for the [Apollo tutorial](http://apollographql.com/docs/tutorial/introduction.html). 🚀
 
