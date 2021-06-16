@@ -3,9 +3,26 @@ import { gql } from "apollo-server-core";
 const typeDefs = gql`
   # special types
   type Query {
-    launches: [Launch]!
+    launches( # this a comment
+      """
+      The number of results to show must be >= 1 defaults to 20
+      """
+      pageSize: int
+      """
+      If you added a cursor here it will return values after the cursor
+      """
+      after: String
+    ): LaunchConnection!
     launch(id: ID!): Launch
     me: User
+  }
+  """
+  Simple wrapper around the list of launches
+  """
+  type LaunchConnection {
+    cursor: String!
+    hasMore: Boolean!
+    launches: [Launch]!
   }
   type Mutation {
     bookTrip(launchId: ID!): TripUpdateResponse!
@@ -36,9 +53,9 @@ const typeDefs = gql`
     type: String
   }
   type TripUpdateResponse {
-	  success: Boolean!
-	  message: String
-	  launches: [Launch]
+    success: Boolean!
+    message: String
+    launches: [Launch]
   }
   # enums
   enum PatchSize {
